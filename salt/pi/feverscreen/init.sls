@@ -43,3 +43,13 @@ leptond-service:
     -  source: salt://pi/feverscreen/update-feverscreen
     {% endif %}
     - mode: 644
+
+/usr/local/bin/tko-channel-stable:
+  file.managed:
+    - source: salt://pi/feverscreen/tko-channel-stable
+    - mode: 755
+
+/usr/local/bin/tko-channel-beta:
+  file.managed:
+    - source: salt://pi/feverscreen/tko-channel-beta
+    - mode: 755

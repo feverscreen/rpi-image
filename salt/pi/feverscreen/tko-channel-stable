@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -xe
+
+echo "0 10 * * * root sudo apt-get update; sudo apt-get -y --only-upgrade install feverscreen"  > /etc/cron.d/update-feverscren
+
+curl -L https://github.com/feverscreen/channel-stable/releases/download/feverscreen/default.pub.key |
+    sudo apt-key --keyring /etc/apt/trusted.gpg.d/default.gpg add -
+sudo curl -L -o /etc/apt/sources.list.d/feverscreen.list \
+        https://github.com/feverscreen/channel-stable/releases/download/feverscreen/feverscreen-channel-stable.list
+sudo apt update
+# Bit of a hack to downgrade from the beta to stable release
+sudo apt-get remove feverscreen -y
+sudo apt-get install feverscreen -y
