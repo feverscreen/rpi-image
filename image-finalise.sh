@@ -9,7 +9,7 @@ fi
 
 sdCard=$1
 date=`date +%Y-%m-%d`
-name="thermal-recorder-$date.img"
+name="tko-$date.img"
 
 echo "Removing wifi details"
 ./cardtool wifi clear $sdCard

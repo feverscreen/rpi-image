@@ -18,4 +18,6 @@ echo "This will take a few minutes"
 ./cardtool wifi country $sdCard NZ
 ./cardtool wifi set $sdCard bushnet feathers
 
+#TODO enable wifi by writing 0 to /var/lib/systemd/rfkill/platform-3f300000.mmcnr\:wlan and /var/lib/systemd/rfkill/platform-fe300000.mmcnr\:wlan
+
 echo "SD card prepare finished. Eject from computer and put in Raspberry Pi"

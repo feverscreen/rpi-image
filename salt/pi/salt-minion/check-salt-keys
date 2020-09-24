@@ -1,0 +1,28 @@
+#!/bin/bash
+
+pki_dir=/etc/salt/pki/minion/
+minion_pub_key=$pki_dir/minion.pub
+minion_priv_key=$pki_dir/minion.pem
+
+restart=no
+while getopts ":r" opt; do
+  case ${opt} in
+    r) 
+      restart=yes
+      ;;
+    \?) 
+      echo -e "Usage: $0  [ -r ]\n\n    -r: restart salt-minion if keys cleared"
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -f $minion_pub_key ]] && [[ ! -s $minion_pub_key ]]; then
+   echo "salt-minion public key file is empty - deleting keys"
+   rm -f $minion_pub_key
+   rm -f $minion_priv_key
+   if [[ $restart == yes ]]; then
+     echo "restarting salt-minion"
+     systemctl restart salt-minion
+   fi
+fi

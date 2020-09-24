@@ -13,24 +13,15 @@ ssh $userHost "sudo ./install-saltstack.sh"
 ssh $userHost "sudo rm ./install-saltstack.sh"
 
 echo "Applying salt state"
-wget https://github.com/TheCacophonyProject/saltops/archive/prod.zip
-unzip prod.zip
-cd saltops-prod/
-sed -i '/maybe-reboot/d' salt/top.sls # We don't want to reboot when making the image
-ssh $userHost "sudo mkdir -p /etc/cacophony" # Needed for now for cacophony-config to install properly
+cd salt 
 ./state-apply-test.sh $host
 cd ..
-rm -r ./saltops-prod/
-rm prod.zip
 ssh $userHost "sudo rm -rf /srv/*"
-
-ssh $userHost "sudo systemctl stop thermal-recorder"
-ssh $userHost "sudo systemctl stop thermal-uploader"
 
 ssh $userHost "sudo rm /etc/salt/minion_id"
 
-ssh $userHost "sudo apt-get update "
-ssh $userHost "sudo apt-get upgrade -y"
-ssh $userHost "sudo apt-get autoremove -y"
+#ssh $userHost "sudo apt-get update "
+#ssh $userHost "sudo apt-get upgrade -y"
+#ssh $userHost "sudo apt-get autoremove -y"
 
 #remove salt-name and salt-key

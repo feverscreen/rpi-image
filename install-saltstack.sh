@@ -16,8 +16,8 @@ echo "internet connection available"
 set -e -x
 
 # Install Salt minion software
-wget -O - https://repo.saltstack.com/apt/debian/9/armhf/2018.3/SALTSTACK-GPG-KEY.pub | apt-key add -
-echo "deb http://repo.saltstack.com/apt/debian/9/armhf/2018.3 stretch main" > /etc/apt/sources.list.d/saltstack.list
+wget -O - https://repo.saltstack.com/py3/debian/10/armhf/3001/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+echo "deb http://repo.saltstack.com/py3/debian/10/armhf/3001 buster main" > /etc/apt/sources.list.d/saltstack.list
 apt-get update
 apt-get install -y salt-minion
 systemctl stop salt-minion

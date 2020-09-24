@@ -1,0 +1,2 @@
+# Update feverscreen every hour
+0 * * * * root sudo apt-get update; sudo apt-get -y --only-upgrade install feverscreen

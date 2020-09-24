@@ -1,0 +1,9 @@
+[Unit]
+Description=Generate random salt ID
+ConditionPathExists=!/etc/salt/minion_id
+
+[Service]
+ExecStart=/usr/local/bin/salt-name-gen
+
+[Install]
+WantedBy=basic.target
