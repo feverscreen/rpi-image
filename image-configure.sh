@@ -2,7 +2,7 @@
 
 # This script is to configure the SD card on the Raspberry Pi
 
-set -e
+set -ex
 
 host=raspberrypi.local
 userHost=pi@$host
@@ -20,8 +20,6 @@ ssh $userHost "sudo rm -rf /srv/*"
 
 ssh $userHost "sudo rm /etc/salt/minion_id"
 
-#ssh $userHost "sudo apt-get update "
-#ssh $userHost "sudo apt-get upgrade -y"
-#ssh $userHost "sudo apt-get autoremove -y"
-
-#remove salt-name and salt-key
+ssh $userHost "sudo apt-get update "
+ssh $userHost "sudo apt-get upgrade -y"
+ssh $userHost "sudo apt-get autoremove -y"
